@@ -1,0 +1,6 @@
+
+<ivy-module version="2.0">
+    <info organisation="org.gabriel" module="MathCrossword"/>
+    <dependency org="org.sosy_lab" name="java-smt" rev="3.7.0"/>
+</ivy-module>
+

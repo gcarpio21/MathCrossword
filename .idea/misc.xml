@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="IvyIDEA.ProjectSettings">
+    <option name="artifactTypeSettings">
+      <ArtifactTypeSettings>
+        <option name="classesTypes" value="jar, mar, sar, war, ear, ejb, bundle, test-jar, dll, dylib, shared-object" />
+        <option name="javadocTypes" value="javadoc, doc, docs, apidoc, apidocs, documentation, documents, shared-object" />
+        <option name="sourcesTypes" value="source, src, sources, srcs, shared-object" />
+      </ArtifactTypeSettings>
+    </option>
+    <option name="ivySettingsFile" value="$USER_HOME$/Documents/ivysettings.xml" />
+    <option name="libraryNameIncludesConfiguration" value="true" />
+    <option name="libraryNameIncludesModule" value="true" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
