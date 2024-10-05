@@ -1,15 +1,13 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+  public static void main(String[] args) {
+    String crossword =
+        "1+_=6   _  / /   +_-_=3 _ 2* = = / =_ 1 _*4=_=     = 8 5-_=1 3  + +   *8/_=_   1  = =   "
+            + "=  _ 8-_=_";
+    String parsedCrossword;
+    parsedCrossword = MathCrossword.parseCrossword(crossword);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
-    }
+    System.out.println(parsedCrossword);
+  }
 }
