@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +12,11 @@ import org.sosy_lab.java_smt.api.BooleanFormula;
 import org.sosy_lab.java_smt.api.BooleanFormulaManager;
 import org.sosy_lab.java_smt.api.FormulaManager;
 import org.sosy_lab.java_smt.api.IntegerFormulaManager;
+import org.sosy_lab.java_smt.api.Model;
 import org.sosy_lab.java_smt.api.NumeralFormula.IntegerFormula;
+import org.sosy_lab.java_smt.api.ProverEnvironment;
 import org.sosy_lab.java_smt.api.SolverContext;
+import org.sosy_lab.java_smt.api.SolverException;
 
 /**
  * This program solves the given math crossword using an SMT solver via the JavaSMT API.
@@ -75,7 +77,7 @@ public class MathCrossword {
       "1+_=6   _" + "  / /   +" + "_-_=3 _ 2" + "* = = / =" + "_ 1 _*4=_" + "=     =  " +
           "8 5-_=1 3" + "  + +   *" + "8/_=_   1" + "  = =   =" + "  _ 8-_=_";
   private static Map<String, IntegerFormula> variables = new HashMap<>();
-  private static List<BooleanFormula> constraints = new ArrayList<>();
+  private static List<BooleanFormula> booleanFormulas = new ArrayList<>();
 
   public static void main(String[] args) throws InvalidConfigurationException {
     Configuration config = Configuration.fromCmdLineArguments(args);
@@ -95,12 +97,32 @@ public class MathCrossword {
 
     Crossword crossword = new Crossword(INPUT);
 
-    generateConstraints(crossword, imgr);
+    generateBooleanFormulas(crossword, imgr);
+    BooleanFormula constraint = bmgr.and(booleanFormulas);
+
+    try (ProverEnvironment prover = context.newProverEnvironment(SolverContext.ProverOptions.GENERATE_MODELS)) {
+      prover.addConstraint(constraint);
+      boolean isUnsat = prover.isUnsat();
+      if (!isUnsat) {
+        Model model = prover.getModel();
+        for (Map.Entry<String, IntegerFormula> entry : variables.entrySet()) {
+          String variableName = entry.getKey();
+          IntegerFormula variable = entry.getValue();
+          int value = model.evaluate(variable).intValue();
+          System.out.println(variableName + " = " + value);
+        }
+      }
+    } catch (SolverException | InterruptedException e) {
+      e.printStackTrace();
+      // Handle the exception as needed
+    }
+
+
 
 
   }
 
-  private static void generateConstraints(Crossword crossword,
+  private static void generateBooleanFormulas(Crossword crossword,
                                                               IntegerFormulaManager imgr) {
     Map<String, Integer> variablesMap = crossword.getVariables();
     List<String> variablesNames = new ArrayList<>(variablesMap.keySet());
@@ -109,13 +131,12 @@ public class MathCrossword {
     generateVariables(variablesNames, imgr);
 
     for (Equation equation : equations) {
-
       String operation = equation.getOperation();
       String[] operationSide = equation.getOperationSide();
 
       switch (operation) {
         case "+":
-          constraints.add(
+          booleanFormulas.add(
               imgr.equal(
                   imgr.add(
                       variables.get(operationSide[0]),
@@ -124,7 +145,7 @@ public class MathCrossword {
               ));
           break;
         case "-":
-          constraints.add(
+          booleanFormulas.add(
               imgr.equal(
                   imgr.subtract(
                       variables.get(operationSide[0]),
@@ -133,7 +154,7 @@ public class MathCrossword {
               ));
           break;
         case "*":
-          constraints.add(
+          booleanFormulas.add(
               imgr.equal(
                   imgr.multiply(
                       variables.get(operationSide[0]),
@@ -142,7 +163,7 @@ public class MathCrossword {
               ));
           break;
         case "/":
-          constraints.add(
+          booleanFormulas.add(
               imgr.equal(
                   imgr.divide(
                       variables.get(operationSide[0]),
@@ -159,6 +180,7 @@ public class MathCrossword {
   private static void generateVariables(List<String> variablesNames, IntegerFormulaManager imgr) {
     for (String variable : variablesNames) {
       variables.put(variable, imgr.makeVariable(variable));
+      System.out.println("variable name: "+variable);
     }
   }
 

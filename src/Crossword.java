@@ -31,7 +31,7 @@ public class Crossword {
     StringBuilder column;
     Matcher matcher;
     String equationString;
-    Equation equation = new Equation();
+    Equation equation;
 
     for (int colNo = 0; colNo < WIDTH; colNo++) {
       column = new StringBuilder();
@@ -40,8 +40,10 @@ public class Crossword {
       }
       matcher = regex.matcher(column.toString());
       while (matcher.find()) {
+        equation = new Equation();
         equationString = matcher.group();
         equation.parseEquation(equationString);
+        System.out.println(equation.toString());
         this.equations.add(equation);
       }
     }
@@ -52,7 +54,7 @@ public class Crossword {
     StringBuilder row;
     Matcher matcher;
     String equationString;
-    Equation equation = new Equation();
+    Equation equation;
 
     for (int rowNo = 0; rowNo < HEIGHT; rowNo++) {
       row = new StringBuilder();
@@ -61,6 +63,7 @@ public class Crossword {
       }
       matcher = regex.matcher(row.toString());
       while (matcher.find()) {
+        equation = new Equation();
         equationString = matcher.group();
         equation.parseEquation(equationString);
         this.equations.add(equation);
@@ -78,7 +81,7 @@ public class Crossword {
           nameVariable(variable + variables);
           variables++;
         } else if (this.crossword[i][j].matches("[0-9]")) {
-          this.crossword[i][j] = String.valueOf(Integer.parseInt(this.crossword[i][j]));
+          nameVariable(this.crossword[i][j]);
         }
       }
     }
@@ -122,6 +125,9 @@ public class Crossword {
   }
 
   public List<Equation> getEquations() {
+    for (Equation equation : this.equations) {
+        System.out.println(equation.toString());
+    }
     return new ArrayList<>(this.equations);
   }
 

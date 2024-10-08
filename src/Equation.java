@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,11 +14,13 @@ public class Equation {
   }
 
   void parseEquation(String equation) {
+    //System.out.println("equation: "+equation);
     String[] sides = equation.split("=");
     Pattern pattern = Pattern.compile("[+\\-*/]");
     Matcher matcher;
 
     for (String side : sides) {
+
       matcher = pattern.matcher(side);
       if (matcher.find()) {
         setOperationSide(extractVariables(side));
@@ -53,6 +52,11 @@ public class Equation {
     return variables;
   }
 
+  public String toString() {
+    return operationSide[0] + operation + operationSide[1] + "=" + resultSide;
+  }
+
+
   public String getOperation() {
 
     return new String(operation);
@@ -67,6 +71,7 @@ public class Equation {
   }
 
   void setOperationSide(String[] operationSide) {
+    this.operationSide = new String[operationSide.length];
     System.arraycopy(operationSide, 0, this.operationSide, 0, operationSide.length);
   }
 
