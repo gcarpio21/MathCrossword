@@ -88,7 +88,7 @@ public class MathCrossword {
     // Solver can be selected either using an argument or a configuration option
     // inside `config`.
     SolverContext context = SolverContextFactory.createSolverContext(
-        config, logger, shutdown.getNotifier(), SolverContextFactory.Solvers.Z3);
+        config, logger, shutdown.getNotifier(), SolverContextFactory.Solvers.PRINCESS);
 
     FormulaManager fmgr = context.getFormulaManager();
 
@@ -96,21 +96,34 @@ public class MathCrossword {
     IntegerFormulaManager imgr = fmgr.getIntegerFormulaManager();
 
     Crossword crossword = new Crossword(INPUT);
+    crossword.print();
+    System.out.println("--------------");
+    crossword.parseCrossword();
 
     generateBooleanFormulas(crossword, imgr);
     BooleanFormula constraint = bmgr.and(booleanFormulas);
 
     try (ProverEnvironment prover = context.newProverEnvironment(SolverContext.ProverOptions.GENERATE_MODELS)) {
       prover.addConstraint(constraint);
+
+      for (IntegerFormula var : variables.values()) {
+        prover.addConstraint(imgr.greaterOrEquals(var, imgr.makeNumber(0)));
+        prover.addConstraint(imgr.lessOrEquals(var, imgr.makeNumber(9)));
+      }
+
       boolean isUnsat = prover.isUnsat();
       if (!isUnsat) {
         Model model = prover.getModel();
+        Map<String, Integer> variableValues = new HashMap<>();
         for (Map.Entry<String, IntegerFormula> entry : variables.entrySet()) {
           String variableName = entry.getKey();
           IntegerFormula variable = entry.getValue();
           int value = model.evaluate(variable).intValue();
-          System.out.println(variableName + " = " + value);
+          variableValues.put(variableName, value);
         }
+        crossword.updateVariables(variableValues);
+        crossword.replaceVariablesWithValues();
+        crossword.print();
       }
     } catch (SolverException | InterruptedException e) {
       e.printStackTrace();
@@ -179,8 +192,12 @@ public class MathCrossword {
 
   private static void generateVariables(List<String> variablesNames, IntegerFormulaManager imgr) {
     for (String variable : variablesNames) {
-      variables.put(variable, imgr.makeVariable(variable));
-      System.out.println("variable name: "+variable);
+      if(variable.startsWith("x_")) {
+        variables.put(variable, imgr.makeVariable(variable));
+      } else {
+        variables.put(variable, imgr.makeNumber(Integer.parseInt(variable)));
+      }
+
     }
   }
 

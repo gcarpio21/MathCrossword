@@ -14,7 +14,6 @@ public class Equation {
   }
 
   void parseEquation(String equation) {
-    //System.out.println("equation: "+equation);
     String[] sides = equation.split("=");
     Pattern pattern = Pattern.compile("[+\\-*/]");
     Matcher matcher;

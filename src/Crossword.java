@@ -14,7 +14,6 @@ public class Crossword {
 
   public Crossword(String crossword) {
     formatCrossword(crossword);
-    parseCrossword();
   }
 
   public void parseCrossword() {
@@ -43,7 +42,6 @@ public class Crossword {
         equation = new Equation();
         equationString = matcher.group();
         equation.parseEquation(equationString);
-        System.out.println(equation.toString());
         this.equations.add(equation);
       }
     }
@@ -125,9 +123,6 @@ public class Crossword {
   }
 
   public List<Equation> getEquations() {
-    for (Equation equation : this.equations) {
-        System.out.println(equation.toString());
-    }
     return new ArrayList<>(this.equations);
   }
 
@@ -135,8 +130,24 @@ public class Crossword {
     return new HashMap<>(this.variables);
   }
 
-  public void setVariablesValues(String variableName, int value){
-    this.variables.put(variableName, value);
+  public void updateVariables(Map<String, Integer> variableValues) {
+    for (Map.Entry<String, Integer> entry : variableValues.entrySet()) {
+      this.variables.put(entry.getKey(), entry.getValue());
+    }
+  }
+
+  public void replaceVariablesWithValues() {
+    for (int i = 0; i < HEIGHT; i++) {
+      for (int j = 0; j < WIDTH; j++) {
+        String cell = this.crossword[i][j];
+        if (cell.startsWith("x_")) {
+          Integer value = this.variables.get(cell);
+          if (value != null) {
+            this.crossword[i][j] = value.toString();
+          }
+        }
+      }
+    }
   }
 
 }

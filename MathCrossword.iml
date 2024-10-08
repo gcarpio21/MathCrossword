@@ -187,6 +187,17 @@
           <root url="jar://$USER_HOME$/.ivy2/cache/com.google.guava/guava/sources/guava-29.0-jre-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/org.checkerframework/checker-qual/sources/checker-qual-3.6.1-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/junit/junit/sources/junit-4.13.1-sources.jar!/" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-z3/shared-objects/libz3java-4.8.9-sosy0.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-z3/shared-objects/libz3-4.8.9-sosy0.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-mathsat/shared-objects/libmathsat5j-5.6.5.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-optimathsat/shared-objects/liboptimathsat5j-1.7.1-sosy0.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-cvc4/shared-objects/libcvc4parser-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-cvc4/shared-objects/libcvc4jni-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-cvc4/shared-objects/libcvc4-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-boolector/shared-objects/libpicosat-3.2.1-30-g95859db8.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-boolector/shared-objects/libminisat-3.2.1-30-g95859db8.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-boolector/shared-objects/libboolector-3.2.1-30-g95859db8.so" />
+          <root url="file://$USER_HOME$/.ivy2/cache/org.sosy_lab/javasmt-solver-yices2/shared-objects/libyices2j-2.6.2-396-g194350c1.so" />
         </SOURCES>
       </library>
     </orderEntry>
