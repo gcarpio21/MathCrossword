@@ -42,7 +42,7 @@ public class CrosswordTests {
 
   @Test
   @DisplayName("testReplaceUnderscoresWithVariables")
-  void testReplaceUnderscores() throws Exception {
+  void testParseVariables() throws Exception {
 
     Method replaceUnderscoresMethod = Crossword.class.getDeclaredMethod("replaceUnderscores");
     replaceUnderscoresMethod.setAccessible(true);

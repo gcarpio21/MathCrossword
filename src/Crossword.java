@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ public class Crossword {
     String regex =
         "([0-9]|x_[1-9][0-9]*)(\\+|\\-|\\*|\\/)([0-9]|x_[1-9][0-9]*)=([0-9]|x_[1-9][0-9]*)";
     Pattern pattern = Pattern.compile(regex);
-    replaceUnderscores();
+    parseVariables();
     addHorizontalEquations(pattern);
     addVerticalEquations(pattern);
 
@@ -69,7 +68,7 @@ public class Crossword {
     }
   }
 
-  private void replaceUnderscores() {
+  private void parseVariables() {
     int variables = 1;
     String variable = "x_";
     for (int i = 0; i < HEIGHT; i++) {
@@ -78,6 +77,8 @@ public class Crossword {
           this.crossword[i][j] = "x_" + variables;
           nameVariable(variable + variables);
           variables++;
+        } else if (this.crossword[i][j].matches("[0-9]")) {
+          this.crossword[i][j] = String.valueOf(Integer.parseInt(this.crossword[i][j]));
         }
       }
     }

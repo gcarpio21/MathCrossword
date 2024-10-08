@@ -69,4 +69,8 @@ public class Equation {
   void setOperationSide(String[] operationSide) {
     System.arraycopy(operationSide, 0, this.operationSide, 0, operationSide.length);
   }
+
+  public String getResultSide() {
+    return new String(resultSide);
+  }
 }

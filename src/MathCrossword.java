@@ -75,6 +75,7 @@ public class MathCrossword {
       "1+_=6   _" + "  / /   +" + "_-_=3 _ 2" + "* = = / =" + "_ 1 _*4=_" + "=     =  " +
           "8 5-_=1 3" + "  + +   *" + "8/_=_   1" + "  = =   =" + "  _ 8-_=_";
   private static Map<String, IntegerFormula> variables = new HashMap<>();
+  private static List<BooleanFormula> constraints = new ArrayList<>();
 
   public static void main(String[] args) throws InvalidConfigurationException {
     Configuration config = Configuration.fromCmdLineArguments(args);
@@ -94,19 +95,19 @@ public class MathCrossword {
 
     Crossword crossword = new Crossword(INPUT);
 
-    //List<BooleanFormula> constraints = getConstraints(crossword);
+    generateConstraints(crossword, imgr);
 
 
   }
 
-  private static List<IntegerFormula> generateIntegerFormulas(Crossword crossword,
-                                                         IntegerFormulaManager imgr) {
+  private static void generateConstraints(Crossword crossword,
+                                                              IntegerFormulaManager imgr) {
     Map<String, Integer> variablesMap = crossword.getVariables();
     List<String> variablesNames = new ArrayList<>(variablesMap.keySet());
     List<Equation> equations = crossword.getEquations();
 
     generateVariables(variablesNames, imgr);
-    //generateFormulas(equations, imgr);
+
     for (Equation equation : equations) {
 
       String operation = equation.getOperation();
@@ -114,41 +115,50 @@ public class MathCrossword {
 
       switch (operation) {
         case "+":
-          //imgr.equal(
-              //imgr.add(operationSide[0], operationSide[1]), c
-          //);
+          constraints.add(
+              imgr.equal(
+                  imgr.add(
+                      variables.get(operationSide[0]),
+                      variables.get(operationSide[1])
+                  ), variables.get(equation.getResultSide())
+              ));
           break;
         case "-":
+          constraints.add(
+              imgr.equal(
+                  imgr.subtract(
+                      variables.get(operationSide[0]),
+                      variables.get(operationSide[1])
+                  ), variables.get(equation.getResultSide())
+              ));
           break;
         case "*":
+          constraints.add(
+              imgr.equal(
+                  imgr.multiply(
+                      variables.get(operationSide[0]),
+                      variables.get(operationSide[1])
+                  ), variables.get(equation.getResultSide())
+              ));
           break;
         case "/":
+          constraints.add(
+              imgr.equal(
+                  imgr.divide(
+                      variables.get(operationSide[0]),
+                      variables.get(operationSide[1])
+                  ), variables.get(equation.getResultSide())
+              ));
           break;
         default:
           break;
       }
     }
-
-    return null;
   }
 
   private static void generateVariables(List<String> variablesNames, IntegerFormulaManager imgr) {
     for (String variable : variablesNames) {
-       variables.put(variable, imgr.makeVariable(variable));
-    }
-  }
-
-  private static String parseTypeOfOperation(String equation) {
-    if (equation.contains("+")) {
-      return "+";
-    } else if (equation.contains("-")) {
-      return "-";
-    } else if (equation.contains("*")) {
-      return "*";
-    } else if (equation.contains("/")) {
-      return "/";
-    } else {
-      return "";
+      variables.put(variable, imgr.makeVariable(variable));
     }
   }
 
