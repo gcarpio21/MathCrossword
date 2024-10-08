@@ -68,7 +68,7 @@ public class CrosswordTests {
   }
 
   @Test
-  @DisplayName("testParseHorizontalEquations")
+  @DisplayName("testAddHorizontalEquations")
   void testParseHorizontalEquations() throws Exception {
     Crossword testCrossword = new Crossword(testInput);
 
@@ -90,8 +90,8 @@ public class CrosswordTests {
   }
 
   @Test
-  @DisplayName("testParseVerticalEquations")
-  void testParseVerticalEquations() throws Exception {
+  @DisplayName("testAddVerticalEquations")
+  void testAddVerticalEquations() throws Exception {
     Crossword testCrossword = new Crossword(testInput);
 
     Method replaceUnderscoresMethod = Crossword.class.getDeclaredMethod("replaceUnderscores");
