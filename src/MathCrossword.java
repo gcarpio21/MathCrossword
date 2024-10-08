@@ -52,16 +52,13 @@
  *     Why are some solvers not usable and what would you need to change to be able to use them? (Theory question only. No code required.)
  */
 
-//for testing pourposes: 1+_=6   _  / /   +_-_=3 _ 2* = = / =_ 1 _*4=_=     = 8 5-_=1 3  + +   *8/_=_   1  = =   =  _ 8-_=_
 public class MathCrossword {
-    // TODO:
-    // 1. Parse the crossword
-    // 2. Create formulas based on the layout of the crossword
-    // 3. Let an arbitrary SMT solver create a solution (model)
 
 
-   public static String parseCrossword(String crossword) {
 
-    return crossword;
+   public static void parseCrossword(Crossword crossword) {
+    crossword.parseCrossword();
     }
+
+
 }
