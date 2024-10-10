@@ -74,8 +74,17 @@ import org.sosy_lab.java_smt.api.SolverException;
 
 public class MathCrossword {
   private static final String INPUT =
-      "1+_=6   _" + "  / /   +" + "_-_=3 _ 2" + "* = = / =" + "_ 1 _*4=_" + "=     =  " +
-          "8 5-_=1 3" + "  + +   *" + "8/_=_   1" + "  = =   =" + "  _ 8-_=_";
+      "1+_=6   _\n"
+          + "  / /   +\n"
+          + "_-_=3 _ 2\n"
+          + "* = = / =\n"
+          + "_ 1 _*4=_\n"
+          + "=     =  \n"
+          + "8 5-_=1 3\n"
+          + "  + +   *\n"
+          + "8/_=_   1\n"
+          + "  = =   =\n"
+          + "  _ 8-_=_";
   private static Map<String, IntegerFormula> variables = new HashMap<>();
   private static List<BooleanFormula> booleanFormulas = new ArrayList<>();
 
@@ -96,14 +105,15 @@ public class MathCrossword {
     IntegerFormulaManager imgr = fmgr.getIntegerFormulaManager();
 
     Crossword crossword = new Crossword(INPUT);
-    crossword.print();
+    System.out.println(crossword.toString());
     System.out.println("--------------");
     crossword.parseCrossword();
 
     generateBooleanFormulas(crossword, imgr);
     BooleanFormula constraint = bmgr.and(booleanFormulas);
 
-    try (ProverEnvironment prover = context.newProverEnvironment(SolverContext.ProverOptions.GENERATE_MODELS)) {
+    try (ProverEnvironment prover = context.newProverEnvironment(
+        SolverContext.ProverOptions.GENERATE_MODELS)) {
       prover.addConstraint(constraint);
 
       for (IntegerFormula var : variables.values()) {
@@ -123,7 +133,7 @@ public class MathCrossword {
         }
         crossword.updateVariables(variableValues);
         crossword.replaceVariablesWithValues();
-        crossword.print();
+        System.out.println(crossword.toString());
       }
     } catch (SolverException | InterruptedException e) {
       e.printStackTrace();
@@ -131,12 +141,10 @@ public class MathCrossword {
     }
 
 
-
-
   }
 
   private static void generateBooleanFormulas(Crossword crossword,
-                                                              IntegerFormulaManager imgr) {
+                                              IntegerFormulaManager imgr) {
     Map<String, Integer> variablesMap = crossword.getVariables();
     List<String> variablesNames = new ArrayList<>(variablesMap.keySet());
     List<Equation> equations = crossword.getEquations();
@@ -192,7 +200,7 @@ public class MathCrossword {
 
   private static void generateVariables(List<String> variablesNames, IntegerFormulaManager imgr) {
     for (String variable : variablesNames) {
-      if(variable.startsWith("x_")) {
+      if (variable.startsWith("x_")) {
         variables.put(variable, imgr.makeVariable(variable));
       } else {
         variables.put(variable, imgr.makeNumber(Integer.parseInt(variable)));

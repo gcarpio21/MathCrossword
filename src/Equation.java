@@ -1,17 +1,16 @@
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The `Equation` class represents a mathematical equation with an operation and operands.
+ * It provides methods to parse an equation string, extract variables, and retrieve the components
+ * of the equation.
+ */
 public class Equation {
 
   private String resultSide;
   private String operation;
   private String[] operationSide;
-
-
-  void setResultSide(String resultSide) {
-    this.resultSide = resultSide;
-  }
 
   void parseEquation(String equation) {
     String[] sides = equation.split("=");
@@ -55,7 +54,6 @@ public class Equation {
     return operationSide[0] + operation + operationSide[1] + "=" + resultSide;
   }
 
-
   public String getOperation() {
 
     return new String(operation);
@@ -76,5 +74,9 @@ public class Equation {
 
   public String getResultSide() {
     return new String(resultSide);
+  }
+
+  void setResultSide(String resultSide) {
+    this.resultSide = resultSide;
   }
 }
