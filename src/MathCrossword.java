@@ -70,10 +70,20 @@ import org.sosy_lab.java_smt.api.SolverException;
  * <p> Bonus question: Do all solvers return the same model?
  * What differences can be observed if they don't?
  * Why are some solvers not usable and what would you need to change to be able to use them? (Theory question only. No code required.)
+ * <ul>
+ *  <li>Some solvers do not support some operations. SMTInterpol does not support multiplication for variables as an example.
+ *  In this case multiplication through multiple additions can solve the problem.</li>
+ * </ul>
+ *
+ * <p>To use this code, it is important to make sure the selected solver supports the operations '+' '-' '*' '/'.
+ * The classes Crossword and Equation help identify equations and variables for later processing to create IntegerFormulas and Boolean Formulas.
+ * Executing the code will solve a crossword given in the problem description using the Princess solver.
+ *
+ * @see Crossword
+ * @see Equation
  */
-
 public class MathCrossword {
-  private static final String INPUT =
+  public static final String input =
       "1+_=6   _\n"
           + "  / /   +\n"
           + "_-_=3 _ 2\n"
@@ -89,6 +99,7 @@ public class MathCrossword {
   private static List<BooleanFormula> booleanFormulas = new ArrayList<>();
 
   public static void main(String[] args) throws InvalidConfigurationException {
+
     Configuration config = Configuration.fromCmdLineArguments(args);
     LogManager logger = BasicLogManager.create(config);
     ShutdownManager shutdown = ShutdownManager.create();
@@ -99,15 +110,15 @@ public class MathCrossword {
     SolverContext context = SolverContextFactory.createSolverContext(
         config, logger, shutdown.getNotifier(), SolverContextFactory.Solvers.PRINCESS);
 
+    Crossword crossword = new Crossword(input);
+    System.out.println(crossword.toString());
+    System.out.println("--------------");
+    crossword.parseCrossword();
+
     FormulaManager fmgr = context.getFormulaManager();
 
     BooleanFormulaManager bmgr = fmgr.getBooleanFormulaManager();
     IntegerFormulaManager imgr = fmgr.getIntegerFormulaManager();
-
-    Crossword crossword = new Crossword(INPUT);
-    System.out.println(crossword.toString());
-    System.out.println("--------------");
-    crossword.parseCrossword();
 
     generateBooleanFormulas(crossword, imgr);
     BooleanFormula constraint = bmgr.and(booleanFormulas);
@@ -134,15 +145,22 @@ public class MathCrossword {
         crossword.updateVariables(variableValues);
         crossword.replaceVariablesWithValues();
         System.out.println(crossword.toString());
+      } else {
+        System.out.println("Unsatisfiable");
       }
     } catch (SolverException | InterruptedException e) {
       e.printStackTrace();
-      // Handle the exception as needed
     }
 
 
   }
 
+  /**
+   * Generates the boolean formulas for the given crossword and integer formula manager.
+   *
+   * @param crossword the crossword object containing the equations and variables
+   * @param imgr      the integer formula manager used to create integer formulas
+   */
   private static void generateBooleanFormulas(Crossword crossword,
                                               IntegerFormulaManager imgr) {
     Map<String, Integer> variablesMap = crossword.getVariables();
@@ -198,7 +216,14 @@ public class MathCrossword {
     }
   }
 
-  private static void generateVariables(List<String> variablesNames, IntegerFormulaManager imgr) {
+  /**
+   * Generates the variables for the given list of variable names and integer formula manager.
+   *
+   * @param variablesNames the list of variable names to generate
+   * @param imgr           the integer formula manager used to create integer formulas
+   */
+  private static void generateVariables(List<String> variablesNames, IntegerFormulaManager
+      imgr) {
     for (String variable : variablesNames) {
       if (variable.startsWith("x_")) {
         variables.put(variable, imgr.makeVariable(variable));

@@ -12,6 +12,12 @@ public class Equation {
   private String operation;
   private String[] operationSide;
 
+
+  /**
+   * Parses the given equation string and extracts the operation and operands.
+   *
+   * @param equation the equation string to parse
+   */
   void parseEquation(String equation) {
     String[] sides = equation.split("=");
     Pattern pattern = Pattern.compile("[+\\-*/]");
@@ -45,37 +51,69 @@ public class Equation {
     }
   }
 
+  /**
+   * Extracts variables from the given side of the equation.
+   *
+   * @param side the side of the equation to extract variables from
+   * @return an array of variables
+   */
   private String[] extractVariables(String side) {
     String[] variables = side.split("[+\\-*/]");
-    return variables;
+    return variables; //The order of arguments is the same as their order in the array
   }
 
-  public String toString() {
-    return operationSide[0] + operation + operationSide[1] + "=" + resultSide;
-  }
 
-  public String getOperation() {
+  /**
+   * Returns the operation of the equation.
+   *
+   * @return the operation of the equation
+   */
+  String getOperation() {
 
     return new String(operation);
   }
 
+  /**
+   * Sets the operation of the equation.
+   *
+   * @param operation the operation of the equation
+   */
   void setOperation(String operation) {
     this.operation = operation;
   }
 
-  public String[] getOperationSide() {
+  /**
+   * Returns the operands of the equation.
+   *
+   * @return an array of operands
+   */
+  String[] getOperationSide() {
     return operationSide.clone();
   }
 
+  /**
+   * Sets the operands of the equation.
+   *
+   * @param operationSide an array of operands
+   */
   void setOperationSide(String[] operationSide) {
-    this.operationSide = new String[operationSide.length];
-    System.arraycopy(operationSide, 0, this.operationSide, 0, operationSide.length);
+    this.operationSide = operationSide.clone();
   }
 
+  /**
+   * Returns the result side of the equation.
+   *
+   * @return the result side of the equation
+   */
   public String getResultSide() {
     return new String(resultSide);
   }
 
+  /**
+   * Sets the operands of the equation.
+   *
+   * @param resultSide an array of operands
+   */
   void setResultSide(String resultSide) {
     this.resultSide = resultSide;
   }
