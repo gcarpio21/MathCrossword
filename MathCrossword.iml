@@ -20,7 +20,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="IvyIDEA-MathCrossword-default">
         <CLASSES>
           <root url="jar://$USER_HOME$/.ivy2/cache/org.sosy_lab/java-smt/jars/java-smt-3.7.0.jar!/" />
