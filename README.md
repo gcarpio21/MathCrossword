@@ -10,4 +10,4 @@ To execute simply run the main function in MathCrossword.java or execute the .ja
 
 ## Dependencies
 
-JavaSMT is included in this project. To compile and run the test class JUnit 5.8.1 must be installed separately. The ivy.xml already contains the all dependencies and a ivysettings.xml can be edited to point to the repositories to resolve them. 
+JavaSMT is included in this project. To compile and run the test class JUnit 5.8.1 must be installed separately. The ivy.xml already contains all dependencies and a ivysettings.xml can be edited to point ivy to the repositories to resolve them. 
