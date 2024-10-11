@@ -1,0 +1,87 @@
+<component name="libraryTable">
+  <library name="IvyIDEA-MathCrossword-default">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/java-smt-3.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/common-0.3000-442-ge6ac6c3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-29.0-jre.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/failureaccess-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsr305-3.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/error_prone_annotations-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/j2objc-annotations-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs-annotations-4.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/animal-sniffer-annotations-1.18.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/mpir-5.6.5.dll" />
+      <root url="file://$PROJECT_DIR$/lib/mathsat-5.6.5.dll" />
+      <root url="file://$PROJECT_DIR$/lib/mathsat5j-5.6.5.dll" />
+      <root url="jar://$PROJECT_DIR$/lib/smtinterpol-2.5-732-gd208e931.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/princess_2.13-2020-09-18-assertionless.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-library-2.13.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/princess-parser_2.13-2020-09-18-assertionless.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/princess-smt-parser_2.13-2020-09-18-assertionless.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-parser-combinators_2.13-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java-cup-runtime-11b-20160615.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/libz3-4.8.9-sosy0.dylib" />
+      <root url="jar://$PROJECT_DIR$/lib/com.microsoft.z3-4.8.9-sosy0.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/libz3java-4.8.9-sosy0.dll" />
+      <root url="file://$PROJECT_DIR$/lib/libz3java-4.8.9-sosy0.dylib" />
+      <root url="file://$PROJECT_DIR$/lib/libz3-4.8.9-sosy0.dll" />
+      <root url="jar://$PROJECT_DIR$/lib/CVC4-1.8-prerelease-2020-06-24-g7825d8f28.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javasmt-yices2-3.6.0-27-g42532e0b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/checker-qual-3.6.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/libmathsat5j-5.6.5.so" />
+      <root url="file://$PROJECT_DIR$/lib/liboptimathsat5j-1.7.1-sosy0.so" />
+      <root url="file://$PROJECT_DIR$/lib/libz3java-4.8.9-sosy0.so" />
+      <root url="file://$PROJECT_DIR$/lib/libz3-4.8.9-sosy0.so" />
+      <root url="file://$PROJECT_DIR$/lib/libcvc4parser-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+      <root url="file://$PROJECT_DIR$/lib/libcvc4jni-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+      <root url="file://$PROJECT_DIR$/lib/libcvc4-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+      <root url="file://$PROJECT_DIR$/lib/libpicosat-3.2.1-30-g95859db8.so" />
+      <root url="file://$PROJECT_DIR$/lib/libminisat-3.2.1-30-g95859db8.so" />
+      <root url="file://$PROJECT_DIR$/lib/libboolector-3.2.1-30-g95859db8.so" />
+      <root url="file://$PROJECT_DIR$/lib/libyices2j-2.6.2-396-g194350c1.so" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/guava-29.0-jre-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsr305-3.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/error_prone_annotations-2.4.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs-annotations-4.1.4-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/smtinterpol-2.5-732-gd208e931-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/princess_2.13-2020-09-18-assertionless-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/checker-qual-3.6.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-testlib-30.0-jre-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/auto-value-annotations-1.7.4-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-4.13.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/truth-1.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/truth-java8-extension-1.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/java-smt-3.7.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/common-0.3000-442-ge6ac6c3-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-29.0-jre-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsr305-3.0.2-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/error_prone_annotations-2.4.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs-annotations-4.1.4-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/libmathsat5j-5.6.5.so" />
+      <root url="file://$PROJECT_DIR$/lib/liboptimathsat5j-1.7.1-sosy0.so" />
+      <root url="jar://$PROJECT_DIR$/lib/smtinterpol-2.5-732-gd208e931-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/princess_2.13-2020-09-18-assertionless-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/libz3java-4.8.9-sosy0.so" />
+      <root url="file://$PROJECT_DIR$/lib/libz3-4.8.9-sosy0.so" />
+      <root url="file://$PROJECT_DIR$/lib/libcvc4parser-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+      <root url="file://$PROJECT_DIR$/lib/libcvc4jni-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+      <root url="file://$PROJECT_DIR$/lib/libcvc4-1.8-prerelease-2020-06-24-g7825d8f28.so" />
+      <root url="file://$PROJECT_DIR$/lib/libpicosat-3.2.1-30-g95859db8.so" />
+      <root url="file://$PROJECT_DIR$/lib/libminisat-3.2.1-30-g95859db8.so" />
+      <root url="file://$PROJECT_DIR$/lib/libboolector-3.2.1-30-g95859db8.so" />
+      <root url="jar://$PROJECT_DIR$/lib/javasmt-yices2-3.6.0-27-g42532e0b-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/libyices2j-2.6.2-396-g194350c1.so" />
+      <root url="jar://$PROJECT_DIR$/lib/checker-qual-3.6.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-testlib-30.0-jre-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/auto-value-annotations-1.7.4-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-4.13.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/truth-1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/truth-java8-extension-1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
